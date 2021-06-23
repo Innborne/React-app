@@ -1,0 +1,14 @@
+.cards-item {
+  padding: 1rem;
+  margin: 0.5rem;
+  background-color: #4b4b4b;
+  color: white;
+  min-width: 31.2%;
+  min-height: 10rem;
+  border-radius: 5px;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+  display: inline-block;
+}
+.cards_title {
+  margin: 0;
+}
