@@ -11,4 +11,13 @@
 }
 .cards_title {
   margin: 0;
+  display: inline-block;
+}
+.cards-item-checked {
+  background-color: #777777;
+}
+.cards-checkbox {
+  float: right;
+  transform: scale(2);
+  margin: 0.5rem;
 }
