@@ -1,5 +1,5 @@
 .cards-main {
-  padding: 1rem;
+  padding: 0.5rem;
   background-color: rgb(31, 31, 31);
   margin: auto;
   margin-bottom: 1rem;
@@ -8,4 +8,7 @@
   min-height: 80vh;
   border-radius: 5px;
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-content: flex-start;
+  flex-wrap: wrap;
 }
