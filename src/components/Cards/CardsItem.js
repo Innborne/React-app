@@ -37,21 +37,46 @@ function CardsItem(props) {
     setEditMode(false);
   };
 
-  const editCards = () => {
-    return editMode ? (
-      <div className="cards-edit">
-        <FiSave onClick={onSaveClick}></FiSave>
-        <FiX onClick={onCancelClick}></FiX>
+  const cardEditMode = () => {
+    return (
+      <div>
+        <div className="card-title-container">
+          <input
+            type="text"
+            className="cards-edit-title"
+            value={userInput.enteredTitle}
+            onChange={titleChangeHandler}
+          ></input>
+          <div className="cards-edit">
+            <FiSave onClick={onSaveClick}></FiSave>
+            <FiX onClick={onCancelClick}></FiX>
+          </div>
+        </div>
+        <textarea
+          className="cards-edit-text"
+          value={userInput.enteredText}
+          onChange={textChangeHandler}
+        ></textarea>
       </div>
-    ) : (
-      <div className="cards-edit">
-        <FiEdit3 onClick={onEditClick}></FiEdit3>
-        <input
-          className="cards-checkbox"
-          type="checkbox"
-          checked={checkedValue}
-          onChange={handleClick}
-        ></input>
+    );
+  };
+
+  const cardReadMode = () => {
+    return (
+      <div>
+        <div className="card-title-container">
+          <h2 className="cards_title">{props.card.title}</h2>
+          <div className="cards-edit">
+            <FiEdit3 onClick={onEditClick}></FiEdit3>
+            <input
+              className="cards-checkbox"
+              type="checkbox"
+              checked={checkedValue}
+              onChange={handleClick}
+            ></input>
+          </div>
+        </div>
+        <p className="cards_text">{props.card.text}</p>
       </div>
     );
   };
@@ -68,42 +93,11 @@ function CardsItem(props) {
     });
   };
 
-  const cardCaption = () => {
-    return editMode ? (
-      <input
-        type="text"
-        className="cards-edit-title"
-        value={userInput.enteredTitle}
-        onChange={titleChangeHandler}
-      ></input>
-    ) : (
-      <h2 className="cards_title">{props.card.title}</h2>
-    );
-  };
-
-  const cardText = () => {
-    return editMode ? (
-      <textarea
-        className="cards-edit-text"
-        value={userInput.enteredText}
-        onChange={textChangeHandler}
-      ></textarea>
-    ) : (
-      <p className="cards_text">{props.card.text}</p>
-    );
-  };
-
   const cardChecked = checkedValue ? "cards-item-checked" : "";
 
   return (
     <div className={`cards-item ${cardChecked}`}>
-      <div>
-        <div className="card-title-container">
-          {cardCaption()}
-          {editCards()}
-        </div>
-        {cardText()}
-      </div>
+      {editMode ? cardEditMode() : cardReadMode()}
     </div>
   );
 }
