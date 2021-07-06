@@ -67,7 +67,7 @@ function CardsItem(props) {
         <div className="card-title-container">
           <h2 className="cards_title">{props.card.title}</h2>
           <div className="cards-edit">
-            <FiEdit3 onClick={onEditClick}></FiEdit3>
+            {!props.readOnly && <FiEdit3 onClick={onEditClick}></FiEdit3>}
             <input
               className="cards-checkbox"
               type="checkbox"
@@ -97,7 +97,11 @@ function CardsItem(props) {
 
   return (
     <div className={`cards-item ${cardChecked}`}>
-      {editMode ? cardEditMode() : cardReadMode()}
+      {editMode
+        ? props.readOnly
+          ? setEditMode(false)
+          : cardEditMode()
+        : cardReadMode()}
     </div>
   );
 }
