@@ -46,14 +46,12 @@ function CardsItem(props) {
     ) : (
       <div className="cards-edit">
         <FiEdit3 onClick={onEditClick}></FiEdit3>
-        {!editMode && (
-          <input
-            className="cards-checkbox"
-            type="checkbox"
-            checked={checkedValue}
-            onChange={handleClick}
-          ></input>
-        )}
+        <input
+          className="cards-checkbox"
+          type="checkbox"
+          checked={checkedValue}
+          onChange={handleClick}
+        ></input>
       </div>
     );
   };
