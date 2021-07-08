@@ -1,14 +1,20 @@
 import "./CardsItem.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FiEdit3, FiSave, FiX } from "react-icons/fi";
 
-function CardsItem(props) {
+function CardsItem({ card, onSaveCardData, readOnly }) {
   const [editMode, setEditMode] = useState(false);
   const [userInput, setUserInput] = useState({
-    enteredTitle: props.card.title,
-    enteredText: props.card.text,
+    enteredTitle: card.title,
+    enteredText: card.text,
   });
-  const [checkedValue, setChecked] = useState(props.card.check);
+  const [checkedValue, setChecked] = useState(card.check);
+
+  useEffect(() => {
+    if (readOnly && editMode) {
+      setEditMode(false);
+    }
+  }, [readOnly, editMode]);
 
   const handleClick = () => {
     setChecked(!checkedValue);
@@ -16,8 +22,8 @@ function CardsItem(props) {
 
   const onSaveClick = () => {
     setEditMode(false);
-    props.onSaveCardData({
-      id: props.card.id,
+    onSaveCardData({
+      id: card.id,
       title: userInput.enteredTitle,
       text: userInput.enteredText,
       check: checkedValue,
@@ -26,8 +32,8 @@ function CardsItem(props) {
 
   const onEditClick = () => {
     setUserInput({
-      enteredText: props.card.text,
-      enteredTitle: props.card.title,
+      enteredText: card.text,
+      enteredTitle: card.title,
     });
     setEditMode(true);
     setChecked(false);
@@ -65,9 +71,9 @@ function CardsItem(props) {
     return (
       <div>
         <div className="card-title-container">
-          <h2 className="cards_title">{props.card.title}</h2>
+          <h2 className="cards_title">{card.title}</h2>
           <div className="cards-edit">
-            {!props.readOnly && <FiEdit3 onClick={onEditClick}></FiEdit3>}
+            {!readOnly && <FiEdit3 onClick={onEditClick}></FiEdit3>}
             <input
               className="cards-checkbox"
               type="checkbox"
@@ -76,7 +82,7 @@ function CardsItem(props) {
             ></input>
           </div>
         </div>
-        <p className="cards_text">{props.card.text}</p>
+        <p className="cards_text">{card.text}</p>
       </div>
     );
   };
@@ -97,11 +103,7 @@ function CardsItem(props) {
 
   return (
     <div className={`cards-item ${cardChecked}`}>
-      {editMode
-        ? props.readOnly
-          ? setEditMode(false)
-          : cardEditMode()
-        : cardReadMode()}
+      {editMode ? cardEditMode() : cardReadMode()}
     </div>
   );
 }
