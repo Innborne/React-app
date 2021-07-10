@@ -99,10 +99,8 @@ function CardsItem({ card, onSaveCardData, readOnly }) {
     });
   };
 
-  const cardChecked = checkedValue ? "cards-item-checked" : "";
-
   return (
-    <div className={`cards-item ${cardChecked}`}>
+    <div className={`cards-item ${checkedValue ? "checked" : ""}`}>
       {editMode ? cardEditMode() : cardReadMode()}
     </div>
   );

@@ -48,7 +48,7 @@
   resize: none;
 }
 
-.cards-item-checked {
+.cards-item.checked {
   background-color: #777777;
 }
 
