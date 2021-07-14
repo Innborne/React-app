@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import CardsMain from "./components/Cards/CardsMain";
-import CardsHeader from "./components/Cards/CardsHeader";
+import CardList from "./components/CardList/CardList";
+import Header from "./components/Header/Header";
 
 const initCards = [
   {
     id: "e1",
     title: "Caption",
     text: "New text...",
-    check: true,
+    check: false,
   },
   {
     id: "e2",
@@ -25,7 +25,7 @@ const initCards = [
     id: "e4",
     title: "Caption4",
     text: "New text4...",
-    check: true,
+    check: false,
   },
   {
     id: "e5",
@@ -37,7 +37,7 @@ const initCards = [
     id: "e6",
     title: "Caption6",
     text: "New text6...",
-    check: true,
+    check: false,
   },
   {
     id: "e7",
@@ -60,15 +60,23 @@ function App() {
   const changeCardsHandler = (newCard) => {
     setCards(
       cards.map((prevCard) =>
-        prevCard.id === newCard.id ? { ...newCard } : prevCard
+        prevCard.id === newCard.id ? { ...prevCard, ...newCard } : prevCard
       )
     );
   };
 
+  const deleteCardsHandler = () => {
+    setCards(cards.filter((card) => !card.check));
+  };
+
   return (
     <div>
-      <CardsHeader>{header}</CardsHeader>
-      <CardsMain items={cards} OnChangeCards={changeCardsHandler}></CardsMain>
+      <Header>{header}</Header>
+      <CardList
+        items={cards}
+        OnChangeCards={changeCardsHandler}
+        OnDeleteCards={deleteCardsHandler}
+      ></CardList>
     </div>
   );
 }
