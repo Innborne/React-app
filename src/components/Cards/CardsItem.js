@@ -1,6 +1,8 @@
-import "./CardsItem.css";
 import { useState, useEffect } from "react";
 import { FiEdit3, FiSave, FiX } from "react-icons/fi";
+import classNames from "classnames";
+
+import "./CardsItem.css";
 
 function CardsItem({ card, onSaveCardData, readOnly }) {
   const [editMode, setEditMode] = useState(false);
@@ -99,10 +101,8 @@ function CardsItem({ card, onSaveCardData, readOnly }) {
     });
   };
 
-  const cardChecked = checkedValue ? "cards-item-checked" : "";
-
   return (
-    <div className={`cards-item ${cardChecked}`}>
+    <div className={classNames("cards-item", { checked: checkedValue })}>
       {editMode ? cardEditMode() : cardReadMode()}
     </div>
   );

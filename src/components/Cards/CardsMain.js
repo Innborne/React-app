@@ -1,5 +1,7 @@
 import { useState } from "react";
+import CardsCheckbox from "./CardsCheckbox";
 import CardsItem from "./CardsItem";
+
 import "./CardsMain.css";
 
 function CardsMain(props) {
@@ -15,15 +17,13 @@ function CardsMain(props) {
 
   return (
     <div className="cards-main">
-      <div className="cards-checkbox-container">
-        <input
-          type="checkbox"
-          className="cards-read-checkbox"
-          checked={readOnlyMode}
-          onChange={readOnlyHandleClick}
-        ></input>
-        <label>Read only</label>
-      </div>
+      <CardsCheckbox
+        type="checkbox"
+        checked={readOnlyMode}
+        onChange={readOnlyHandleClick}
+      >
+        Read only
+      </CardsCheckbox>
       {props.items.map((cardData) => (
         <CardsItem
           onSaveCardData={saveCardDataHandler}
