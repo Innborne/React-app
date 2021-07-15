@@ -13,15 +13,25 @@ function CardList(props) {
     setReadOnlyMode((prevReadOnlyMode) => !prevReadOnlyMode);
   };
 
+  const DeleteCardsHandler = () => {
+    props.OnChangeCards(props.items.filter((card) => !card.check));
+  };
+
   const saveCardDataHandler = (enteredCardsData) => {
-    props.OnChangeCards({ ...enteredCardsData });
+    props.OnChangeCards(
+      props.items.map((prevCard) =>
+        prevCard.id === enteredCardsData.id
+          ? { ...prevCard, ...enteredCardsData }
+          : prevCard
+      )
+    );
   };
 
   return (
     <div className="card-list">
       <div className="card-list-header">
         {props.items.find((card) => card.check) && (
-          <button className="card-list-button" onClick={props.OnDeleteCards}>
+          <button className="card-list-button" onClick={DeleteCardsHandler}>
             {deleteButtonText}
           </button>
         )}
@@ -39,7 +49,7 @@ function CardList(props) {
           key={cardData.id}
           card={cardData}
           readOnly={readOnlyMode}
-        ></Card>
+        />
       ))}
     </div>
   );

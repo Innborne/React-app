@@ -78,12 +78,12 @@ function Card({ card, onSaveCardData, readOnly }) {
         onEditClick={onEdit}
         onCancelClick={onCancel}
         handleClick={onHandle}
-      ></CardHeader>
+      />
       <CardBody
         bodyText={userInput.enteredText}
         editMode={editMode}
         onTextChange={textChangeHandler}
-      ></CardBody>
+      />
     </div>
   );
 }

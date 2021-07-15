@@ -57,26 +57,14 @@ function App() {
   const header = "Header";
   const [cards, setCards] = useState(initCards);
 
-  const changeCardsHandler = (newCard) => {
-    setCards(
-      cards.map((prevCard) =>
-        prevCard.id === newCard.id ? { ...prevCard, ...newCard } : prevCard
-      )
-    );
-  };
-
-  const deleteCardsHandler = () => {
-    setCards(cards.filter((card) => !card.check));
+  const changeCardsHandler = (newCards) => {
+    setCards(newCards);
   };
 
   return (
     <div>
       <Header>{header}</Header>
-      <CardList
-        items={cards}
-        OnChangeCards={changeCardsHandler}
-        OnDeleteCards={deleteCardsHandler}
-      ></CardList>
+      <CardList items={cards} OnChangeCards={changeCardsHandler}></CardList>
     </div>
   );
 }

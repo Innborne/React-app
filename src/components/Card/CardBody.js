@@ -7,14 +7,15 @@ function CardBody(props) {
         className="card-body-edit"
         value={props.bodyText}
         onChange={(event) => props.onTextChange(event.target.value)}
-      ></textarea>
+      />
     );
   };
 
   const cardTextReadMode = () => {
     return <p className="card-body">{props.bodyText}</p>;
   };
-  return <>{props.editMode ? cardTextEditMode() : cardTextReadMode()}</>;
+
+  return props.editMode ? cardTextEditMode() : cardTextReadMode();
 }
 
 export default CardBody;

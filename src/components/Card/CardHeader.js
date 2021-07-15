@@ -11,10 +11,10 @@ function CardHeader(props) {
           className="card-header-edit-title"
           value={props.headerTitle}
           onChange={(event) => props.onTitleChange(event.target.value)}
-        ></input>
+        />
         <div className="card-header-edit-buttons">
-          <FiSave onClick={props.onSaveClick}></FiSave>
-          <FiX onClick={props.onCancelClick}></FiX>
+          <FiSave onClick={props.onSaveClick} />
+          <FiX onClick={props.onCancelClick} />
         </div>
       </div>
     );
@@ -25,19 +25,19 @@ function CardHeader(props) {
       <div className="card-header-container">
         <h2 className="card-header-title">{props.headerTitle}</h2>
         <div className="card-header-edit-buttons">
-          {!props.readOnly && <FiEdit3 onClick={props.onEditClick}></FiEdit3>}
+          {!props.readOnly && <FiEdit3 onClick={props.onEditClick} />}
           <input
             className="card-header-checkbox"
             type="checkbox"
             checked={props.onCheck}
             onChange={props.handleClick}
-          ></input>
+          />
         </div>
       </div>
     );
   };
 
-  return <>{props.editMode ? cardTitleEditMode() : cardTitleReadMode()}</>;
+  return props.editMode ? cardTitleEditMode() : cardTitleReadMode();
 }
 
 export default CardHeader;
