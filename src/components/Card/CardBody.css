@@ -1,0 +1,15 @@
+.card-body {
+  overflow: auto;
+  display: flex;
+  white-space: pre-line;
+}
+
+.card-body-edit {
+  margin-top: 0.85rem;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  display: flex;
+  resize: none;
+}
