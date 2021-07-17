@@ -2,14 +2,13 @@ import styled from "styled-components";
 
 const CheckboxContainer = styled.div`
   display: flex;
-  margin-left: 0.25rem;
+  gap: 0.4rem;
   align-items: center;
   color: white;
   opacity: ${({ checked }) => (checked ? "100%" : "50%")};
 `;
 
 const CheckboxInput = styled.input`
-  margin: 0.5rem;
   transform: scale(1.6);
 `;
 

@@ -64,7 +64,7 @@ function App() {
   return (
     <div>
       <Header>{header}</Header>
-      <CardList items={cards} OnChangeCards={changeCardsHandler}></CardList>
+      <CardList items={cards} OnChangeCards={changeCardsHandler} />
     </div>
   );
 }

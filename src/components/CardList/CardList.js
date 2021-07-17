@@ -1,13 +1,16 @@
 import { useState } from "react";
 import Card from "../Card/Card";
 import CardListCheckbox from "./CardListCheckbox";
+import CardAdding from "../CardAdding/CardAdding";
 
 import "./CardList.css";
 
 function CardList(props) {
   const deleteButtonText = "delete selected cards",
+    addButtonText = "add card",
     readOnlyCheckboxText = "Read only";
   const [readOnlyMode, setReadOnlyMode] = useState(true);
+  const [cardAddingMode, setCardAddingMode] = useState(false);
 
   const readOnlyHandleClick = () => {
     setReadOnlyMode((prevReadOnlyMode) => !prevReadOnlyMode);
@@ -27,9 +30,24 @@ function CardList(props) {
     );
   };
 
+  const AddCardButtonHandler = () => {
+    setCardAddingMode(true);
+  };
+
+  const addCardDataHandler = (enteredAddData) => {
+    props.OnChangeCards([{ ...enteredAddData }, ...props.items]);
+  };
+
   return (
     <div className="card-list">
       <div className="card-list-header">
+        <button
+          className="card-list-button"
+          disabled={cardAddingMode}
+          onClick={AddCardButtonHandler}
+        >
+          {addButtonText}
+        </button>
         {props.items.find((card) => card.check) && (
           <button className="card-list-button" onClick={DeleteCardsHandler}>
             {deleteButtonText}
@@ -43,6 +61,12 @@ function CardList(props) {
           {readOnlyCheckboxText}
         </CardListCheckbox>
       </div>
+      {cardAddingMode && (
+        <CardAdding
+          addCardMode={setCardAddingMode}
+          onAddCard={addCardDataHandler}
+        />
+      )}
       {props.items.map((cardData) => (
         <Card
           onSaveCardData={saveCardDataHandler}
