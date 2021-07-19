@@ -32,12 +32,12 @@ function CardAdding(props) {
       text: newCardData.enteredText,
       check: false,
     });
-    props.addCardMode(false);
+    props.disableCardMode();
   };
 
   const onCancelClick = () => {
     setnewCardData({ enteredTitle: "", enteredText: "" });
-    props.addCardMode(false);
+    props.disableCardMode();
   };
 
   return (

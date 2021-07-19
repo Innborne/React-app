@@ -31,7 +31,7 @@ function CardList(props) {
   };
 
   const AddCardButtonHandler = () => {
-    setCardAddingMode(true);
+    setCardAddingMode(prevCardAddingState => !prevCardAddingState);
   };
 
   const addCardDataHandler = (enteredAddData) => {
@@ -63,7 +63,7 @@ function CardList(props) {
       </div>
       {cardAddingMode && (
         <CardAdding
-          addCardMode={setCardAddingMode}
+          disableCardMode={AddCardButtonHandler}
           onAddCard={addCardDataHandler}
         />
       )}
