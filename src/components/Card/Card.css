@@ -1,14 +1,13 @@
 .card-item {
   padding: 1rem;
-  margin: 0.5rem;
   background-color: #4b4b4b;
   color: white;
-  min-width: calc(100% / 3 - 1rem);
-  max-width: calc(100% - 1rem);
+  min-width: calc(100% / 3 - 1rem / 3 * 2);
+  max-width: calc(100%);
   min-height: 10rem;
   border-radius: 5px;
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
 }
 

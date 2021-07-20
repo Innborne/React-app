@@ -1,0 +1,55 @@
+.card-adding-item {
+  padding: 1rem;
+  background-color: #4b4b4b;
+  color: white;
+  min-width: calc(100% / 3 * 1 - 1rem / 3 * 2);
+  max-width: calc(100%);
+  min-height: 10rem;
+  border-radius: 5px;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.card-adding-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.card-adding-item input {
+  display: inline-flex;
+  padding: 0.35rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  max-width: 100%;
+  width: 100%;
+}
+
+.card-adding-item textarea {
+  display: flex;
+  padding: 0.35rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  resize: none;
+  width: 100%;
+}
+
+.card-adding-button-conteiner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.card-adding-button {
+  background-color: #2a2a2a;
+  color: white;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+  padding: 0.5rem;
+}
+
+.card-adding-button:hover {
+  background-color: #777777;
+}
