@@ -2,8 +2,19 @@ import { useState, useEffect } from "react";
 import classNames from "classnames";
 import CardBody from "./CardBody";
 import CardHeader from "./CardHeader";
+import WithLoadingDelay from "../withLoadingDelay/withLoadingDelay";
+import styled from "styled-components";
 
 import "./Card.css";
+
+const CardDelayContainer = styled.div`
+  display: flex;
+  min-width: calc(100% / 3 - 1rem / 3 * 2);
+  max-width: 100%;
+  min-height: 10rem;
+`;
+
+const CardWithDelay = WithLoadingDelay(Card, CardDelayContainer);
 
 function Card({ card, onSaveCardData, readOnly }) {
   const [editMode, setEditMode] = useState(false);
@@ -89,3 +100,4 @@ function Card({ card, onSaveCardData, readOnly }) {
 }
 
 export default Card;
+export { CardWithDelay };

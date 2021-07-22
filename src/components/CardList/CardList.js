@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Card from "../Card/Card";
+import { CardWithDelay } from "../Card/Card";
 import CardListCheckbox from "./CardListCheckbox";
 import CardAdding from "../CardAdding/CardAdding";
 
@@ -31,7 +31,7 @@ function CardList(props) {
   };
 
   const AddCardButtonHandler = () => {
-    setCardAddingMode(prevCardAddingState => !prevCardAddingState);
+    setCardAddingMode((prevCardAddingState) => !prevCardAddingState);
   };
 
   const addCardDataHandler = (enteredAddData) => {
@@ -68,7 +68,7 @@ function CardList(props) {
         />
       )}
       {props.items.map((cardData) => (
-        <Card
+        <CardWithDelay
           onSaveCardData={saveCardDataHandler}
           key={cardData.id}
           card={cardData}
