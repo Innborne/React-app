@@ -4,6 +4,7 @@ import CardBody from "./CardBody";
 import CardHeader from "./CardHeader";
 import WithLoadingDelay from "../withLoadingDelay/withLoadingDelay";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 import "./Card.css";
 
@@ -98,6 +99,12 @@ function Card({ card, onSaveCardData, readOnly }) {
     </div>
   );
 }
+
+Card.propTypes = {
+  card: PropTypes.object.isRequired,
+  onSaveCardData: PropTypes.func.isRequired,
+  readOnly: PropTypes.bool,
+};
 
 export default Card;
 export { CardWithDelay };
