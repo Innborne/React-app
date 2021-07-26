@@ -1,41 +1,25 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { CardWithDelay } from "../Card/Card";
 import CardListCheckbox from "./CardListCheckbox";
 import CardAdding from "../CardAdding/CardAdding";
+import CardListContext from "../CardListContext/CardListContext";
 
 import "./CardList.css";
 
-function CardList(props) {
+function CardList() {
   const deleteButtonText = "delete selected cards",
     addButtonText = "add card",
     readOnlyCheckboxText = "Read only";
   const [readOnlyMode, setReadOnlyMode] = useState(true);
   const [cardAddingMode, setCardAddingMode] = useState(false);
+  const cardListCtx = useContext(CardListContext);
 
   const readOnlyHandleClick = () => {
     setReadOnlyMode((prevReadOnlyMode) => !prevReadOnlyMode);
   };
 
-  const DeleteCardsHandler = () => {
-    props.OnChangeCards(props.items.filter((card) => !card.check));
-  };
-
-  const saveCardDataHandler = (enteredCardsData) => {
-    props.OnChangeCards(
-      props.items.map((prevCard) =>
-        prevCard.id === enteredCardsData.id
-          ? { ...prevCard, ...enteredCardsData }
-          : prevCard
-      )
-    );
-  };
-
-  const AddCardButtonHandler = () => {
+  const addCardButtonHandler = () => {
     setCardAddingMode((prevCardAddingState) => !prevCardAddingState);
-  };
-
-  const addCardDataHandler = (enteredAddData) => {
-    props.OnChangeCards([{ ...enteredAddData }, ...props.items]);
   };
 
   return (
@@ -44,12 +28,15 @@ function CardList(props) {
         <button
           className="card-list-button"
           disabled={cardAddingMode}
-          onClick={AddCardButtonHandler}
+          onClick={addCardButtonHandler}
         >
           {addButtonText}
         </button>
-        {props.items.find((card) => card.check) && (
-          <button className="card-list-button" onClick={DeleteCardsHandler}>
+        {cardListCtx.items.find((card) => card.check) && (
+          <button
+            className="card-list-button"
+            onClick={cardListCtx.onDeleteCard}
+          >
             {deleteButtonText}
           </button>
         )}
@@ -63,13 +50,13 @@ function CardList(props) {
       </div>
       {cardAddingMode && (
         <CardAdding
-          disableCardMode={AddCardButtonHandler}
-          onAddCard={addCardDataHandler}
+          disableCardMode={addCardButtonHandler}
+          onAddCard={cardListCtx.onAddCard}
         />
       )}
-      {props.items.map((cardData) => (
+      {cardListCtx.items.map((cardData) => (
         <CardWithDelay
-          onSaveCardData={saveCardDataHandler}
+          onSaveCardData={cardListCtx.onChangeCard}
           key={cardData.id}
           card={cardData}
           readOnly={readOnlyMode}

@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import CardList from "./components/CardList/CardList";
+import { CardListContextProvider } from "./components/CardListContext/CardListContext";
 import Header from "./components/Header/Header";
 
 const initCards = [
@@ -55,17 +56,12 @@ const initCards = [
 
 function App() {
   const header = "Header";
-  const [cards, setCards] = useState(initCards);
-
-  const changeCardsHandler = (newCards) => {
-    setCards(newCards);
-  };
 
   return (
-    <div>
+    <CardListContextProvider initCards={initCards}>
       <Header>{header}</Header>
-      <CardList items={cards} OnChangeCards={changeCardsHandler} />
-    </div>
+      <CardList />
+    </CardListContextProvider>
   );
 }
 
