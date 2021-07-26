@@ -5,11 +5,12 @@ import "./Header.css";
 
 function Header(props) {
   const ctx = useContext(CardListContext);
+  const cardBadgeText = "Cards";
   return (
     <header className="header">
       <div>{props.children}</div>
       <div className="header-text-badge">
-        {"Cards"}
+        {cardBadgeText}
         <span className="header-badge">{ctx.items.length}</span>
       </div>
     </header>

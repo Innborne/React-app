@@ -12,13 +12,13 @@ function CardList() {
     readOnlyCheckboxText = "Read only";
   const [readOnlyMode, setReadOnlyMode] = useState(true);
   const [cardAddingMode, setCardAddingMode] = useState(false);
-  const CardListCtx = useContext(CardListContext);
+  const cardListCtx = useContext(CardListContext);
 
   const readOnlyHandleClick = () => {
     setReadOnlyMode((prevReadOnlyMode) => !prevReadOnlyMode);
   };
 
-  const AddCardButtonHandler = () => {
+  const addCardButtonHandler = () => {
     setCardAddingMode((prevCardAddingState) => !prevCardAddingState);
   };
 
@@ -28,14 +28,14 @@ function CardList() {
         <button
           className="card-list-button"
           disabled={cardAddingMode}
-          onClick={AddCardButtonHandler}
+          onClick={addCardButtonHandler}
         >
           {addButtonText}
         </button>
-        {CardListCtx.items.find((card) => card.check) && (
+        {cardListCtx.items.find((card) => card.check) && (
           <button
             className="card-list-button"
-            onClick={CardListCtx.onDeleteCard}
+            onClick={cardListCtx.onDeleteCard}
           >
             {deleteButtonText}
           </button>
@@ -50,13 +50,13 @@ function CardList() {
       </div>
       {cardAddingMode && (
         <CardAdding
-          disableCardMode={AddCardButtonHandler}
-          onAddCard={CardListCtx.onAddCard}
+          disableCardMode={addCardButtonHandler}
+          onAddCard={cardListCtx.onAddCard}
         />
       )}
-      {CardListCtx.items.map((cardData) => (
+      {cardListCtx.items.map((cardData) => (
         <CardWithDelay
-          onSaveCardData={CardListCtx.onChangeCard}
+          onSaveCardData={cardListCtx.onChangeCard}
           key={cardData.id}
           card={cardData}
           readOnly={readOnlyMode}
