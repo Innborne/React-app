@@ -10,9 +10,9 @@ import "./Card.css";
 
 const CardDelayContainer = styled.div`
   display: flex;
-  min-width: calc(100% / 3 - 1rem / 3 * 2);
+  width: calc((50rem - 2rem) / 3 - 1rem / 3 * 2);
   max-width: 100%;
-  min-height: 10rem;
+  height: 10rem;
 `;
 
 const CardWithDelay = WithLoadingDelay(Card, CardDelayContainer);
