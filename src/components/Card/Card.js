@@ -12,7 +12,7 @@ const CardDelayContainer = styled.div`
   display: flex;
   width: calc((50rem - 2rem) / 3 - 1rem / 3 * 2);
   max-width: 100%;
-  height: 10rem;
+  height: 11rem;
 `;
 
 const CardWithDelay = WithLoadingDelay(Card, CardDelayContainer);

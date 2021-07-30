@@ -42,19 +42,21 @@ function CardAdding(props) {
 
   return (
     <div className="card-adding-item">
-      <input
-        className="card-adding-edit-title"
-        type="text"
-        placeholder={cardTitle}
-        value={newCardData.enteredTitle}
-        onChange={newCardTitleHandler}
-      />
-      <textarea
-        className="card-adding-edit-text"
-        placeholder={cardText}
-        value={newCardData.enteredText}
-        onChange={newCardTextHandler}
-      />
+      <div className="card-adding-container">
+        <input
+          className="card-adding-edit-title"
+          type="text"
+          placeholder={cardTitle}
+          value={newCardData.enteredTitle}
+          onChange={newCardTitleHandler}
+        />
+        <textarea
+          className="card-adding-edit-text"
+          placeholder={cardText}
+          value={newCardData.enteredText}
+          onChange={newCardTextHandler}
+        />
+      </div>
       <div className="card-adding-button-conteiner">
         <button className="card-adding-button" onClick={onCardAddingClick}>
           {addCardButtonText}
