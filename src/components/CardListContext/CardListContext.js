@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { v4 } from "uuid";
 
@@ -12,7 +12,7 @@ const CardListContext = React.createContext({
 export const CardListContextProvider = (props) => {
   const [cards, setCards] = useState([]);
 
-  const fetchCards = useCallback(async () => {
+  const fetchCards = async () => {
     const response = await axios(
       "https://raw.githubusercontent.com/BrunnerLivio/PokemonDataGraber/master/output.json"
     );
@@ -27,11 +27,11 @@ export const CardListContextProvider = (props) => {
         };
       })
     );
-  }, []);
+  };
 
   useEffect(() => {
     fetchCards();
-  }, [fetchCards]);
+  }, []);
 
   const addCard = (enteredAddData) => {
     setCards([{ ...enteredAddData }, ...cards]);
