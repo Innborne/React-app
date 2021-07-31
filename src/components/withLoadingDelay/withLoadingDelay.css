@@ -1,10 +1,3 @@
-.loading-container {
-  display: flex;
-  min-width: 10rem;
-  min-height: 10rem;
-  flex-grow: 1;
-}
-
 .loading {
   width: 3rem;
   height: 3rem;

@@ -14,10 +14,8 @@ function WithLoadingDelay(Component, StyledContainer) {
 
     const DelayLoading = () => {
       return (
-        <StyledContainer>
-          <div className="loading-container">
+        <StyledContainer className="loading-container">
             <div className="loading" />
-          </div>
         </StyledContainer>
       );
     };
