@@ -1,10 +1,10 @@
-import React from "react";
-import CardList from "./components/CardList/CardList";
-import { CardListContextProvider } from "./components/CardListContext/CardListContext";
-import Header from "./components/Header/Header";
+import React from 'react';
+import CardList from './components/CardList/CardList';
+import { CardListContextProvider } from './components/CardListContext/CardListContext';
+import Header from './components/Header/Header';
 
 function App() {
-  const header = "Header";
+  const header = 'Header';
 
   return (
     <CardListContextProvider>

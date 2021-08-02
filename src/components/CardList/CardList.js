@@ -1,15 +1,15 @@
-import { useState, useContext } from "react";
-import { CardWithDelay } from "../Card/Card";
-import CardListCheckbox from "./CardListCheckbox";
-import CardAdding from "../CardAdding/CardAdding";
-import CardListContext from "../CardListContext/CardListContext";
+import { useState, useContext } from 'react';
+import { CardWithDelay } from '../Card/Card';
+import CardListCheckbox from './CardListCheckbox';
+import CardAdding from '../CardAdding/CardAdding';
+import CardListContext from '../CardListContext/CardListContext';
 
-import "./CardList.css";
+import './CardList.css';
 
 function CardList() {
-  const deleteButtonText = "delete selected cards",
-    addButtonText = "add card",
-    readOnlyCheckboxText = "Read only";
+  const deleteButtonText = 'delete selected cards',
+    addButtonText = 'add card',
+    readOnlyCheckboxText = 'Read only';
   const [readOnlyMode, setReadOnlyMode] = useState(true);
   const [cardAddingMode, setCardAddingMode] = useState(false);
   const cardListCtx = useContext(CardListContext);

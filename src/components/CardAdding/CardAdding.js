@@ -1,16 +1,16 @@
-import { useState } from "react";
-import { v4 } from "uuid";
+import { useState } from 'react';
+import { v4 } from 'uuid';
 
-import "./CardAdding.css";
+import './CardAdding.css';
 
 function CardAdding(props) {
-  const addCardButtonText = "OK",
-    cancelButtonText = "Cancel",
-    cardTitle = "Title...",
-    cardText = "Text...";
+  const addCardButtonText = 'OK',
+    cancelButtonText = 'Cancel',
+    cardTitle = 'Title...',
+    cardText = 'Text...';
   const [newCardData, setnewCardData] = useState({
-    enteredTitle: "",
-    enteredText: "",
+    enteredTitle: '',
+    enteredText: '',
   });
 
   const newCardTitleHandler = (event) => {
@@ -36,7 +36,7 @@ function CardAdding(props) {
   };
 
   const onCancelClick = () => {
-    setnewCardData({ enteredTitle: "", enteredText: "" });
+    setnewCardData({ enteredTitle: '', enteredText: '' });
     props.disableCardMode();
   };
 

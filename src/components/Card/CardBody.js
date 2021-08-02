@@ -1,4 +1,4 @@
-import "./CardBody.css";
+import './CardBody.css';
 
 function CardBody(props) {
   const cardTextEditMode = () => {

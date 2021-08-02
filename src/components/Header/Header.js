@@ -1,11 +1,11 @@
-import { useContext } from "react";
-import CardListContext from "../CardListContext/CardListContext";
+import { useContext } from 'react';
+import CardListContext from '../CardListContext/CardListContext';
 
-import "./Header.css";
+import './Header.css';
 
 function Header(props) {
   const ctx = useContext(CardListContext);
-  const cardBadgeText = "Cards";
+  const cardBadgeText = 'Cards';
   return (
     <header className="header">
       <div>{props.children}</div>
