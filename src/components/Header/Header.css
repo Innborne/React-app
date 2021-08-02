@@ -2,7 +2,8 @@
   display: flex;
   max-width: 95%;
   width: 50rem;
-  height: 5.5rem;
+  min-height: 5.5rem;
+  max-height: 100%;
   border: 1px solid #2a2a2a;
   background-color: #2a2a2a;
   color: white;
@@ -15,6 +16,7 @@
   margin-bottom: 0.5rem;
   padding: 1rem;
   flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .header-text-badge {
@@ -49,4 +51,21 @@
   position: relative;
   top: -1px;
   margin-left: 0.25rem;
+}
+
+.nav-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-container a {
+  color: white;
+  text-decoration: none;
+  opacity: 50%;
+}
+
+.nav-container a:hover,
+.nav-container a:active,
+.nav-container a.active {
+  opacity: 100%;
 }
