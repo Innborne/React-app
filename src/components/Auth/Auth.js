@@ -57,12 +57,12 @@ function Auth() {
           placeholder="Email..."
           onChange={changeEmailHandler}
           type="text"
-        ></input>
+        />
         <input
           placeholder="Password..."
           onChange={changePasswordHandler}
           type="password"
-        ></input>
+        />
         <div>
           <button disabled={!isValid} onClick={signInHandler}>
             {signInButtonText}
