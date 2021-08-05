@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const CheckboxContainer = styled.div`
   display: flex;
   gap: 0.4rem;
   align-items: center;
   color: white;
-  opacity: ${({ checked }) => (checked ? "100%" : "50%")};
+  opacity: ${({ checked }) => (checked ? '100%' : '50%')};
 `;
 
 const CheckboxInput = styled.input`

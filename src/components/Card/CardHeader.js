@@ -1,6 +1,6 @@
-import { FiEdit3, FiSave, FiX } from "react-icons/fi";
+import { FiEdit3, FiSave, FiX } from 'react-icons/fi';
 
-import "./CardHeader.css";
+import './CardHeader.css';
 
 function CardHeader(props) {
   const cardTitleEditMode = () => {

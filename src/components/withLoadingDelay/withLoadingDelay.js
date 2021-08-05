@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import "./withLoadingDelay.css";
+import { useState, useEffect } from 'react';
+import './withLoadingDelay.css';
 
 function WithLoadingDelay(Component, StyledContainer) {
   return function ComponentWithLoading(props) {
@@ -15,7 +15,7 @@ function WithLoadingDelay(Component, StyledContainer) {
     const DelayLoading = () => {
       return (
         <StyledContainer className="loading-container">
-            <div className="loading" />
+          <div className="loading" />
         </StyledContainer>
       );
     };

@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
-import classNames from "classnames";
-import CardBody from "./CardBody";
-import CardHeader from "./CardHeader";
-import WithLoadingDelay from "../withLoadingDelay/withLoadingDelay";
-import styled from "styled-components";
-import PropTypes from "prop-types";
+import { useState, useEffect } from 'react';
+import classNames from 'classnames';
+import CardBody from './CardBody';
+import CardHeader from './CardHeader';
+import WithLoadingDelay from '../withLoadingDelay/withLoadingDelay';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
-import "./Card.css";
+import './Card.css';
 
 const CardDelayContainer = styled.div`
   display: flex;
@@ -79,7 +79,7 @@ function Card({ card, onSaveCardData, readOnly }) {
   };
 
   return (
-    <div className={classNames("card-item", { checked: card.check })}>
+    <div className={classNames('card-item', { checked: card.check })}>
       <CardHeader
         headerTitle={userInput.enteredTitle}
         onTitleChange={titleChangeHandler}
