@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+import InputWithValidation from '../InputWithValidation/InputWithValidation';
 import WithLoadingDelay from '../withLoadingDelay/withLoadingDelay';
 import './Auth.css';
 
@@ -19,52 +20,60 @@ const AuthWithDelayStyle = styled.div`
 const AuthWithDelay = WithLoadingDelay(Auth, AuthWithDelayStyle);
 
 function Auth() {
-  const [enteredEmail, setEnteredEmail] = useState('');
-  const [enteredPassword, setEnteredPass] = useState('');
-  const [isValid, setIsValid] = useState(false);
+  const [emailState, setEmailState] = useState({ value: '', valid: false });
+  const [passwordState, setPasswordState] = useState({
+    value: '',
+    valid: false,
+  });
   const formName = 'Login',
     signInButtonText = 'Sign in';
   const history = useHistory();
+
+  const emailValidation = (enteredData) => {
+    return /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+$/.test(
+      enteredData
+    );
+  };
+
+  const passwordValidation = (enteredData) => {
+    return /^(?=.*\d)(?=.*[a-zA-Z])([^\s]){8,}$/.test(enteredData);
+  };
 
   const signInHandler = () => {
     history.push('/');
   };
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsValid(
-        enteredEmail.trim().length > 0 && enteredPassword.trim().length > 0
-      );
-    }, 500);
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [enteredEmail, enteredPassword]);
-
-  const changeEmailHandler = (event) => {
-    setEnteredEmail(event.target.value);
+  const changeEmailHandler = (enteredData) => {
+    setEmailState({ value: enteredData.value, valid: enteredData.valid });
   };
 
-  const changePasswordHandler = (event) => {
-    setEnteredPass(event.target.value);
+  const changePasswordHandler = (enteredData) => {
+    setPasswordState({ value: enteredData.value, valid: enteredData.valid });
   };
 
   return (
     <div className="auth-page-container">
       <div className="auth-container">
         <span>{formName}</span>
-        <input
+        <InputWithValidation
+          validation={emailValidation}
+          className="auth-container-input"
           placeholder="Email..."
           onChange={changeEmailHandler}
           type="text"
         />
-        <input
+        <InputWithValidation
+          validation={passwordValidation}
+          className="auth-container-input"
           placeholder="Password..."
           onChange={changePasswordHandler}
           type="password"
         />
         <div>
-          <button disabled={!isValid} onClick={signInHandler}>
+          <button
+            disabled={!emailState.valid || !passwordState.valid}
+            onClick={signInHandler}
+          >
             {signInButtonText}
           </button>
         </div>

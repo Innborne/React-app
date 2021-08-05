@@ -25,7 +25,7 @@
   margin: auto;
 }
 
-.auth-container input {
+.auth-container-input {
   padding: 0.35rem;
   border-radius: 5px;
   border: 1px solid #ccc;
@@ -46,11 +46,12 @@
   padding: 0.5rem;
 }
 
-.auth-container button:disabled {
+.auth-container button:disabled,
+.auth-container button:hover:disabled {
   background-color: rgb(31, 31, 31);
   opacity: 50%;
 }
 
-button:hover {
+.auth-container button:hover {
   background-color: #777777;
 }
