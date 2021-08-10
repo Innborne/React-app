@@ -1,10 +1,11 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import { CardWithDelay } from '../Card/Card';
 import CardListCheckbox from './CardListCheckbox';
 import CardAdding from '../CardAdding/CardAdding';
-import CardListContext from '../CardListContext/CardListContext';
 
 import './CardList.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { cardListActions } from '../../store/cards';
 
 function CardList() {
   const deleteButtonText = 'delete selected cards',
@@ -12,7 +13,8 @@ function CardList() {
     readOnlyCheckboxText = 'Read only';
   const [readOnlyMode, setReadOnlyMode] = useState(true);
   const [cardAddingMode, setCardAddingMode] = useState(false);
-  const cardListCtx = useContext(CardListContext);
+  const cards = useSelector((state) => state.items);
+  const dispatch = useDispatch();
 
   const readOnlyHandleClick = () => {
     setReadOnlyMode((prevReadOnlyMode) => !prevReadOnlyMode);
@@ -20,6 +22,18 @@ function CardList() {
 
   const addCardButtonHandler = () => {
     setCardAddingMode((prevCardAddingState) => !prevCardAddingState);
+  };
+
+  const addCardHandler = (enteredData) => {
+    dispatch(cardListActions.onAddCard(enteredData));
+  };
+
+  const changeCardHandler = (enteredData) => {
+    dispatch(cardListActions.onChangeCard(enteredData));
+  };
+
+  const deleteCardHandler = () => {
+    dispatch(cardListActions.onDeleteCard());
   };
 
   return (
@@ -32,11 +46,8 @@ function CardList() {
         >
           {addButtonText}
         </button>
-        {cardListCtx.items.find((card) => card.check) && (
-          <button
-            className="card-list-button"
-            onClick={cardListCtx.onDeleteCard}
-          >
+        {cards.find((card) => card.check) && (
+          <button className="card-list-button" onClick={deleteCardHandler}>
             {deleteButtonText}
           </button>
         )}
@@ -51,12 +62,12 @@ function CardList() {
       {cardAddingMode && (
         <CardAdding
           disableCardMode={addCardButtonHandler}
-          onAddCard={cardListCtx.onAddCard}
+          onAddCard={addCardHandler}
         />
       )}
-      {cardListCtx.items.map((cardData) => (
+      {cards.map((cardData) => (
         <CardWithDelay
-          onSaveCardData={cardListCtx.onChangeCard}
+          onSaveCardData={changeCardHandler}
           key={cardData.id}
           card={cardData}
           readOnly={readOnlyMode}
