@@ -89,7 +89,11 @@ function Card({ card, onSaveCardData, readOnly }) {
   return (
     <div
       onDoubleClick={onDoubleClick}
-      className={classNames('card-item', { checked: card.check })}
+      className={classNames(
+        'card-item',
+        { checked: card.check },
+        { readMode: !editMode && readOnly }
+      )}
     >
       <CardHeader
         headerTitle={userInput.enteredTitle}
