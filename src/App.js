@@ -6,32 +6,14 @@ import NotFound from './components/NotFound/NotFound';
 import { AuthWithDelay } from './components/Auth/Auth';
 import { useDispatch } from 'react-redux';
 import { cardListActions } from './store/cards';
-import { v4 } from 'uuid';
-import axios from 'axios';
 import CardDetail from './components/CardDetail/CardDetail';
+import FetchCards from './api/api';
 
 function App() {
   const dispatch = useDispatch();
 
-  const fetchCards = () => {
-    axios(
-      'https://raw.githubusercontent.com/BrunnerLivio/PokemonDataGraber/master/output.json'
-    )
-      .then((response) =>
-        response.data.slice(0, 15).map((cardData) => {
-          return {
-            id: v4(),
-            title: cardData['Name'],
-            text: cardData['About'],
-            check: false,
-          };
-        })
-      )
-      .then((cards) => dispatch(cardListActions.setCards(cards)));
-  };
-
   useEffect(() => {
-    fetchCards();
+    FetchCards().then((cards) => dispatch(cardListActions.setCards(cards)));
     //fetching card only once
     // eslint-disable-next-line
   }, []);
