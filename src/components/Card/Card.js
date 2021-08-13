@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import './Card.css';
+import { useHistory } from 'react-router-dom';
 
 const CardDelayContainer = styled.div`
   display: flex;
@@ -23,6 +24,7 @@ function Card({ card, onSaveCardData, readOnly }) {
     enteredTitle: card.title,
     enteredText: card.text,
   });
+  const history = useHistory();
 
   useEffect(() => {
     if (readOnly && editMode) {
@@ -78,8 +80,21 @@ function Card({ card, onSaveCardData, readOnly }) {
     });
   };
 
+  const onDoubleClick = () => {
+    if (!editMode) {
+      history.push(`/card/${card.id}`);
+    }
+  };
+
   return (
-    <div className={classNames('card-item', { checked: card.check })}>
+    <div
+      onDoubleClick={onDoubleClick}
+      className={classNames(
+        'card-item',
+        { checked: card.check },
+        { readMode: !editMode }
+      )}
+    >
       <CardHeader
         headerTitle={userInput.enteredTitle}
         onTitleChange={titleChangeHandler}

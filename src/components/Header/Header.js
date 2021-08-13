@@ -1,11 +1,10 @@
-import { useContext } from 'react';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import CardListContext from '../CardListContext/CardListContext';
 
 import './Header.css';
 
 function Header() {
-  const ctx = useContext(CardListContext);
+  const cards = useSelector((state) => state.items);
   const cardBadgeText = 'Cards',
     homePageText = 'Home',
     signInPageText = 'Sign in';
@@ -22,7 +21,7 @@ function Header() {
       </div>
       <div className="header-text-badge">
         {cardBadgeText}
-        <span className="header-badge">{ctx.items.length}</span>
+        <span className="header-badge">{cards.length}</span>
       </div>
     </header>
   );

@@ -7,10 +7,16 @@
   height: 11rem;
   border-radius: 5px;
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+  border: 2px solid transparent;
   display: flex;
   flex-direction: column;
+  transition: all 0.4s cubic-bezier(0.05, 0, 0, 1);
+}
+
+.readMode:hover {
+  background-color: #777777;
 }
 
 .checked {
-  background-color: #777777;
+  border: 2px solid #9c9c9c;
 }
