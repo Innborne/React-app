@@ -81,7 +81,7 @@ function Card({ card, onSaveCardData, readOnly }) {
   };
 
   const onDoubleClick = () => {
-    if (readOnly) {
+    if (!editMode) {
       history.push(`/card/${card.id}`);
     }
   };
@@ -92,7 +92,7 @@ function Card({ card, onSaveCardData, readOnly }) {
       className={classNames(
         'card-item',
         { checked: card.check },
-        { readMode: !editMode && readOnly }
+        { readMode: !editMode }
       )}
     >
       <CardHeader

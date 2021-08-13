@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import CardList from './components/CardList/CardList';
 import Header from './components/Header/Header';
@@ -13,13 +13,11 @@ import CardDetail from './components/CardDetail/CardDetail';
 function App() {
   const dispatch = useDispatch();
 
-  const fetchCards = useCallback(async () => {
-    const response = await axios(
+  const fetchCards = () => {
+    axios(
       'https://raw.githubusercontent.com/BrunnerLivio/PokemonDataGraber/master/output.json'
-    );
-
-    dispatch(
-      cardListActions.setCards(
+    )
+      .then((response) =>
         response.data.slice(0, 15).map((cardData) => {
           return {
             id: v4(),
@@ -29,12 +27,14 @@ function App() {
           };
         })
       )
-    );
-  }, [dispatch]);
+      .then((cards) => dispatch(cardListActions.setCards(cards)));
+  };
 
   useEffect(() => {
     fetchCards();
-  }, [fetchCards]);
+    //fetching card only once
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <BrowserRouter>
