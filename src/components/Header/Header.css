@@ -53,20 +53,33 @@
   margin-left: 0.25rem;
 }
 
-.nav-container {
-  display: flex;
-  gap: 1rem;
-}
-
-.nav-container a {
+.header a {
+  display: inline-flex;
   color: white;
   text-decoration: none;
   opacity: 50%;
   transition: all 0.4s cubic-bezier(0.05, 0, 0, 1);
 }
 
-.nav-container a:hover,
-.nav-container a:active,
-.nav-container a.active {
+.header a:hover,
+.header a:active,
+.header a.active {
   opacity: 100%;
+}
+
+.container {
+  display: inline-flex;
+  gap: 1rem;
+  color: rgba(255, 255, 255, 0.5);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.container-logout-click,
+.container-logout-click.active {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.container-logout-click:hover {
+  color: white;
 }

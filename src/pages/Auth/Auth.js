@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import InputWithValidation from '../InputWithValidation/InputWithValidation';
-import WithLoadingDelay from '../withLoadingDelay/withLoadingDelay';
+import { login } from '../../store/user';
+import InputWithValidation from '../../components/InputWithValidation/InputWithValidation';
+import WithLoadingDelay from '../../components/withLoadingDelay/withLoadingDelay';
 import './Auth.css';
 
 const AuthWithDelayStyle = styled.div`
@@ -20,6 +22,7 @@ const AuthWithDelayStyle = styled.div`
 const AuthWithDelay = WithLoadingDelay(Auth, AuthWithDelayStyle);
 
 function Auth() {
+  const dispatch = useDispatch();
   const [emailState, setEmailState] = useState({ value: '', valid: false });
   const [passwordState, setPasswordState] = useState({
     value: '',
@@ -40,6 +43,12 @@ function Auth() {
   };
 
   const signInHandler = () => {
+    dispatch(
+      login({
+        email: emailState.value,
+        password: passwordState.value,
+      })
+    );
     history.push('/');
   };
 

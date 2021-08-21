@@ -26,11 +26,19 @@
 }
 
 .auth-container-input {
-  padding: 0.35rem;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+  padding: 0.35rem 0;
+  border: 1px solid transparent;
+  background-color: transparent;
+  color: white;
   width: 20rem;
   max-width: 100%;
+  outline: none;
+  transition: all 0.4s cubic-bezier(0.05, 0, 0, 1);
+}
+
+.auth-container-input:focus,
+.auth-container-input:hover {
+  border-bottom: 1px solid white;
 }
 
 .auth-container span {

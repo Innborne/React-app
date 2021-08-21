@@ -3,12 +3,14 @@ import { FiEdit3, FiSave, FiX } from 'react-icons/fi';
 import './CardHeader.css';
 
 function CardHeader(props) {
+  const titlePlh = 'Title...';
+
   const cardTitleEditMode = () => {
     return (
       <div className="card-header-container">
         <input
           type="text"
-          className="card-header-edit-title"
+          placeholder={titlePlh}
           value={props.headerTitle}
           onChange={(event) => props.onTitleChange(event.target.value)}
         />
@@ -24,15 +26,16 @@ function CardHeader(props) {
     return (
       <div className="card-header-container">
         <h2 className="card-header-title">{props.headerTitle}</h2>
-        <div className="card-header-edit-buttons">
-          {!props.readOnly && <FiEdit3 onClick={props.onEditClick} />}
-          <input
-            className="card-header-checkbox"
-            type="checkbox"
-            checked={props.onCheck}
-            onChange={props.handleClick}
-          />
-        </div>
+        {!props.readOnly && (
+          <div className="card-header-edit-buttons">
+            <FiEdit3 onClick={props.onEditClick} />
+            <input
+              type="checkbox"
+              checked={props.onCheck}
+              onChange={props.handleClick}
+            />
+          </div>
+        )}
       </div>
     );
   };

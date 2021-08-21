@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { CardWithDelay } from '../Card/Card';
-import CardListCheckbox from './CardListCheckbox';
-import CardAdding from '../CardAdding/CardAdding';
+import { CardWithDelay } from '../../components/Card/Card';
+import CardAdding from '../../components/CardAdding/CardAdding';
 
 import './CardList.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,16 +8,11 @@ import { cardListActions } from '../../store/cards';
 
 function CardList() {
   const deleteButtonText = 'delete selected cards',
-    addButtonText = 'add card',
-    readOnlyCheckboxText = 'Read only';
-  const [readOnlyMode, setReadOnlyMode] = useState(true);
+    addButtonText = 'add card';
+  const readOnlyMode = useSelector((state) => state.cards.readOnly);
   const [cardAddingMode, setCardAddingMode] = useState(false);
-  const cards = useSelector((state) => state.items);
+  const cards = useSelector((state) => state.cards.items);
   const dispatch = useDispatch();
-
-  const readOnlyHandleClick = () => {
-    setReadOnlyMode((prevReadOnlyMode) => !prevReadOnlyMode);
-  };
 
   const addCardButtonHandler = () => {
     setCardAddingMode((prevCardAddingState) => !prevCardAddingState);
@@ -38,27 +32,22 @@ function CardList() {
 
   return (
     <div className="card-list">
-      <div className="card-list-header">
-        <button
-          className="card-list-button"
-          disabled={cardAddingMode}
-          onClick={addCardButtonHandler}
-        >
-          {addButtonText}
-        </button>
-        {cards.find((card) => card.check) && (
-          <button className="card-list-button" onClick={deleteCardHandler}>
-            {deleteButtonText}
+      {!readOnlyMode && (
+        <div className="card-list-header">
+          <button
+            className="card-list-button"
+            disabled={cardAddingMode}
+            onClick={addCardButtonHandler}
+          >
+            {addButtonText}
           </button>
-        )}
-        <CardListCheckbox
-          type="checkbox"
-          checked={readOnlyMode}
-          onChange={readOnlyHandleClick}
-        >
-          {readOnlyCheckboxText}
-        </CardListCheckbox>
-      </div>
+          {cards.find((card) => card.check) && (
+            <button className="card-list-button" onClick={deleteCardHandler}>
+              {deleteButtonText}
+            </button>
+          )}
+        </div>
+      )}
       {cardAddingMode && (
         <CardAdding
           disableCardMode={addCardButtonHandler}

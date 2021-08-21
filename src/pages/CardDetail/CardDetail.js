@@ -9,20 +9,17 @@ const CardDetail = () => {
   const dispatch = useDispatch();
   const params = useParams();
   const card = useSelector((state) =>
-    state.items.find((card) => card.id === params.id)
+    state.cards.items.find((card) => card.id === params.id)
   );
+  const readOnlyMode = useSelector((state) => state.cards.readOnly);
   const history = useHistory();
 
-  if (card === undefined) {
+  if (!card) {
     history.push('/notfound');
   }
 
-  const [titleValue, setTitleValue] = useState(
-    card !== undefined ? card.title : ''
-  );
-  const [textValue, setTextValue] = useState(
-    card !== undefined ? card.text : ''
-  );
+  const [titleValue, setTitleValue] = useState(card ? card.title : '');
+  const [textValue, setTextValue] = useState(card ? card.text : '');
 
   const titlePlh = 'Title...',
     textPlh = 'Text...',
@@ -54,22 +51,29 @@ const CardDetail = () => {
 
   return (
     <div className="card-detail-container">
-      <div className="card-edit-container">
-        <input
-          placeholder={titlePlh}
-          value={titleValue}
-          onChange={changeTitleHandler}
-        />
-        <textarea
-          placeholder={textPlh}
-          value={textValue}
-          onChange={changeTextHandler}
-        />
-        <div className="card-idit-button-container">
-          <button onClick={saveCardHandler}>{changeCardButtonText}</button>
-          <button onClick={cancelCardHandler}>{cancelButtonText}</button>
+      {readOnlyMode ? (
+        <div className="card-readmode-container">
+          <h2>{titleValue}</h2>
+          <p>{textValue}</p>
         </div>
-      </div>
+      ) : (
+        <div className="card-edit-container">
+          <input
+            placeholder={titlePlh}
+            value={titleValue}
+            onChange={changeTitleHandler}
+          />
+          <textarea
+            placeholder={textPlh}
+            value={textValue}
+            onChange={changeTextHandler}
+          />
+          <div className="card-idit-button-container">
+            <button onClick={saveCardHandler}>{changeCardButtonText}</button>
+            <button onClick={cancelCardHandler}>{cancelButtonText}</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
