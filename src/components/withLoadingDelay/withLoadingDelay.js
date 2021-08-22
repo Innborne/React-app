@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './withLoadingDelay.css';
 
-function WithLoadingDelay(Component, StyledContainer) {
+function WithLoadingDelay(Component, componentStyle, pageStyle) {
   return function ComponentWithLoading(props) {
     const [loading, setLoading] = useState(true);
 
@@ -14,9 +14,14 @@ function WithLoadingDelay(Component, StyledContainer) {
 
     const DelayLoading = () => {
       return (
-        <StyledContainer className="loading-container">
-          <div className="loading" />
-        </StyledContainer>
+        <div className={pageStyle}>
+          <div
+            className={componentStyle}
+            style={{ boxShadow: 'none', backgroundColor: 'transparent' }}
+          >
+            <div className="loading" />
+          </div>
+        </div>
       );
     };
 

@@ -1,25 +1,10 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import styled from 'styled-components';
 import { login } from '../../store/user';
 import InputWithValidation from '../../components/InputWithValidation/InputWithValidation';
 import WithLoadingDelay from '../../components/withLoadingDelay/withLoadingDelay';
 import './Auth.css';
-
-const AuthWithDelayStyle = styled.div`
-  background-color: rgb(31, 31, 31);
-  margin: auto;
-  margin-bottom: 1rem;
-  max-width: 95%;
-  width: 50rem;
-  min-height: 65vh;
-  border-radius: 5px;
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
-  display: flex;
-`;
-
-const AuthWithDelay = WithLoadingDelay(Auth, AuthWithDelayStyle);
 
 function Auth() {
   const dispatch = useDispatch();
@@ -92,4 +77,8 @@ function Auth() {
 }
 
 export default Auth;
-export { AuthWithDelay };
+export const AuthWithDelay = WithLoadingDelay(
+  Auth,
+  'auth-container',
+  'auth-page-container'
+);
