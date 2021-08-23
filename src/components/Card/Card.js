@@ -3,20 +3,10 @@ import classNames from 'classnames';
 import CardBody from './CardBody';
 import CardHeader from './CardHeader';
 import WithLoadingDelay from '../withLoadingDelay/withLoadingDelay';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import './Card.css';
 import { useHistory } from 'react-router-dom';
-
-const CardDelayContainer = styled.div`
-  display: flex;
-  width: calc((50rem - 2rem) / 3 - 1rem / 3 * 2);
-  max-width: 100%;
-  height: 11rem;
-`;
-
-const CardWithDelay = WithLoadingDelay(Card, CardDelayContainer);
 
 function Card({ card, onSaveCardData, readOnly }) {
   const [editMode, setEditMode] = useState(false);
@@ -122,4 +112,4 @@ Card.propTypes = {
 };
 
 export default Card;
-export { CardWithDelay };
+export const CardWithDelay = WithLoadingDelay(Card, 'card-item');

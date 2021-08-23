@@ -1,32 +1,57 @@
 .card-header-container {
   display: flex;
   justify-content: space-between;
+  gap: 0.5rem;
 }
 
 .card-header-title {
   margin: 0;
-  overflow: auto;
-  display: flex;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.card-header-edit-title {
+.card-header-container input[type='text'] {
+  font-family: inherit;
   font-size: x-large;
-  width: 10rem;
-  height: 2rem;
-  border-radius: 5px;
-  border: 0px;
+  padding: 0;
+  border: none;
+  border-bottom: 1px solid transparent;
+  background-color: transparent;
   font-weight: bold;
-  display: flex;
-  overflow: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  color: white;
+  outline: none;
+  transition: all 0.4s cubic-bezier(0.05, 0, 0, 1);
 }
 
-.card-header-checkbox {
-  transform: scale(1.5);
-  margin-left: 0.4rem;
+.card-header-container input[type='text']:focus,
+.card-header-container input[type='text']:hover {
+  border-bottom: 1px solid rgb(255, 255, 255);
+}
+
+.card-header-container input[type='checkbox'] {
+  zoom: 1.7;
+  margin: 0;
+  margin-left: 0.1rem;
 }
 
 .card-header-edit-buttons {
-  zoom: 1.3;
   display: flex;
-  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.4rem;
+  align-self: start;
+}
+
+.card-header-container svg {
+  zoom: 1.2;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.05, 0, 0, 1);
+  align-self: center;
+}
+
+.card-header-container svg:hover {
+  color: white;
 }

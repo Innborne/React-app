@@ -1,10 +1,13 @@
 import './CardBody.css';
 
 function CardBody(props) {
+  const textPlh = 'Text...';
+
   const cardTextEditMode = () => {
     return (
       <textarea
         className="card-body-edit"
+        placeholder={textPlh}
         value={props.bodyText}
         onChange={(event) => props.onTextChange(event.target.value)}
       />

@@ -1,7 +1,4 @@
 import { useState } from 'react';
-import classNames from 'classnames';
-
-import './InputWithValidation.css';
 
 const InputWithValidation = (props) => {
   const [inputIsTouched, setInputIsTouched] = useState(false);
@@ -23,9 +20,10 @@ const InputWithValidation = (props) => {
 
   return (
     <input
-      className={classNames(props.className, {
-        invalid: !isValid && inputIsTouched,
-      })}
+      className={props.className}
+      style={{
+        borderBottomColor: !isValid && inputIsTouched && 'rgb(255, 129, 129)',
+      }}
       onChange={changeEmailHandler}
       onBlur={onBlurHandler}
       placeholder={props.placeholder}

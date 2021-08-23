@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initCardList = { items: [] };
+const initCardList = { items: [], readOnly: true };
 
 const cardListSlice = createSlice({
   name: 'cards',
@@ -21,6 +21,9 @@ const cardListSlice = createSlice({
     },
     onDeleteCard: (state) => {
       state.items = state.items.filter((card) => !card.check);
+    },
+    setReadOnlyMode: (state, action) => {
+      state.readOnly = action.payload;
     },
   },
 });
