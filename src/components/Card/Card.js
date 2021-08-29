@@ -3,10 +3,10 @@ import classNames from 'classnames';
 import CardBody from './CardBody';
 import CardHeader from './CardHeader';
 import WithLoadingDelay from '../withLoadingDelay/withLoadingDelay';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import './Card.css';
-import { useHistory } from 'react-router-dom';
 
 function Card({ card, onSaveCardData, readOnly }) {
   const [editMode, setEditMode] = useState(false);
@@ -24,7 +24,7 @@ function Card({ card, onSaveCardData, readOnly }) {
       });
       setEditMode(false);
     }
-  }, [readOnly, editMode, card]);
+  }, [readOnly, editMode, card.title, card.text]);
 
   const onHandle = () => {
     onSaveCardData({
@@ -59,15 +59,11 @@ function Card({ card, onSaveCardData, readOnly }) {
   };
 
   const titleChangeHandler = (titleValue) => {
-    setUserInput((prevState) => {
-      return { ...prevState, enteredTitle: titleValue };
-    });
+    setUserInput({ ...userInput, enteredTitle: titleValue });
   };
 
   const textChangeHandler = (textValue) => {
-    setUserInput((prevState) => {
-      return { ...prevState, enteredText: textValue };
-    });
+    setUserInput({ ...userInput, enteredText: textValue });
   };
 
   const onDoubleClick = () => {
