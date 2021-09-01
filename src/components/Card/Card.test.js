@@ -41,7 +41,7 @@ describe('test Card component', () => {
     const setStateMock = jest.fn();
     let wrapper;
 
-    beforeAll(() => {
+    beforeEach(() => {
       jest.spyOn(React, 'useState').mockImplementation((state) => {
         return [state, setStateMock];
       });
@@ -107,6 +107,24 @@ describe('test Card component', () => {
         title: props.card.title,
         text: props.card.text,
       });
+    });
+
+    test('test onSave with changed state data', () => {
+      const userInput = { enteredTitle: 'new title', enteredText: 'new text' };
+      const setEditModeMock = jest.fn();
+      React.useState = jest
+        .fn()
+        .mockReturnValueOnce([false, setEditModeMock])
+        .mockReturnValueOnce([userInput]);
+      const wrapper = shallow(<Card {...props} />);
+      wrapper.find('CardHeader').prop('onSaveClick')();
+      expect(setEditModeMock).toBeCalledWith(false);
+      expect(props.onSaveCardData).toBeCalledWith({
+        id: props.card.id,
+        title: userInput.enteredTitle,
+        text: userInput.enteredText,
+      });
+      jest.restoreAllMocks();
     });
   });
 

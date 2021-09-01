@@ -20,10 +20,10 @@ describe('test CardBody component', () => {
   });
 
   test('test onChange, should call onChange with entered text data', () => {
-    const ChangedBodyText = 'New body text';
+    const сhangedBodyText = 'New body text';
     wrapper
       .find('textarea')
-      .simulate('change', { target: { value: ChangedBodyText } });
-    expect(props.onTextChange).toBeCalledWith(ChangedBodyText);
+      .simulate('change', { target: { value: сhangedBodyText } });
+    expect(props.onTextChange).toBeCalledWith(сhangedBodyText);
   });
 });
