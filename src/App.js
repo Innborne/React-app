@@ -1,14 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense } from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
-import CardList from './pages/CardList/CardList';
 import Header from './components/Header/Header';
-import NotFound from './pages/NotFound/NotFound';
-import { AuthWithDelay } from './pages/Auth/Auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { cardListActions } from './store/cards';
-import CardDetail from './pages/CardDetail/CardDetail';
 import FetchCards from './api/api';
-import Settings from './pages/Settings/Settings';
+import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
+
+const CardList = React.lazy(() => import('./pages/CardList/CardList'));
+const NotFound = React.lazy(() => import('./pages/NotFound/NotFound'));
+const Auth = React.lazy(() => import('./pages/Auth/Auth'));
+const CardDetail = React.lazy(() => import('./pages/CardDetail/CardDetail'));
+const Settings = React.lazy(() => import('./pages/Settings/Settings'));
 
 function App() {
   const dispatch = useDispatch();
@@ -23,28 +25,36 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-      <Switch>
-        <Route path="/" exact>
-          <CardList />
-        </Route>
-        <Route path="/notfound" exact>
-          <NotFound />
-        </Route>
-        <Route path="/auth" exact>
-          <AuthWithDelay />
-        </Route>
-        <Route path="/card/:id" exact>
-          <CardDetail />
-        </Route>
-        {user && user.isAdmin && (
-          <Route path="/settings" exact>
-            <Settings />
+      <Suspense
+        fallback={
+          <div className="pagebody">
+            <LoadingSpinner />
+          </div>
+        }
+      >
+        <Switch>
+          <Route path="/" exact>
+            <CardList />
           </Route>
-        )}
-        <Route path="*">
-          <Redirect to="/notfound" />
-        </Route>
-      </Switch>
+          <Route path="/notfound" exact>
+            <NotFound />
+          </Route>
+          <Route path="/auth" exact>
+            <Auth />
+          </Route>
+          <Route path="/card/:id" exact>
+            <CardDetail />
+          </Route>
+          {user && user.isAdmin && (
+            <Route path="/settings" exact>
+              <Settings />
+            </Route>
+          )}
+          <Route path="*">
+            <Redirect to="/notfound" />
+          </Route>
+        </Switch>
+      </Suspense>
     </BrowserRouter>
   );
 }

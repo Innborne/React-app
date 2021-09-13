@@ -5,6 +5,7 @@ import CardAdding from '../../components/CardAdding/CardAdding';
 import './CardList.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { cardListActions } from '../../store/cards';
+import useModal from '../../hooks/useModal';
 
 function CardList() {
   const deleteButtonText = 'delete selected cards',
@@ -13,6 +14,9 @@ function CardList() {
   const [cardAddingMode, setCardAddingMode] = useState(false);
   const cards = useSelector((state) => state.cards.items);
   const dispatch = useDispatch();
+
+  const modalValue = useModal(2000, 'test');
+  modalValue && console.log(modalValue);
 
   const addCardButtonHandler = () => {
     setCardAddingMode((prevCardAddingState) => !prevCardAddingState);
