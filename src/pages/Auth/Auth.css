@@ -23,17 +23,18 @@
   width: 17rem;
   max-width: 100%;
   margin: 3rem auto;
+  justify-content: space-between;
 }
 
 .auth-container-input {
   padding: 0.35rem 0;
-  border: 1px solid transparent;
+  border: 0px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.6);
   background-color: transparent;
   color: white;
   width: 100%;
   outline: none;
-  transition: all 0.4s cubic-bezier(0.05, 0, 0, 1);
+  transition: 0.5s;
 }
 
 .auth-container-input::placeholder {
@@ -53,15 +54,14 @@
   background-color: #2a2a2a;
   color: white;
   border-radius: 5px;
-  border: 1px solid rgb(255, 255, 255, 0.1);
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+  border: 0;
   padding: 0.4rem 0.85rem;
-  transition: all 0.4s cubic-bezier(0.05, 0, 0, 1);
+  transition: 0.5s;
   cursor: pointer;
 }
 
 .auth-container button:hover {
-  background-color: #777777;
+  background-color: #3a3a3a;
 }
 
 .auth-container button:disabled {

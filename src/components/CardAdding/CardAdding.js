@@ -58,10 +58,8 @@ function CardAdding(props) {
         />
       </div>
       <div className="card-adding-button-conteiner">
-        <button className="card-adding-button" onClick={onCardAddingClick}>
-          {addCardButtonText}
-        </button>
-        <button className="card-adding-button" onClick={onCancelClick}>
+        <button onClick={onCardAddingClick}>{addCardButtonText}</button>
+        <button className="cancel" onClick={onCancelClick}>
           {cancelButtonText}
         </button>
       </div>

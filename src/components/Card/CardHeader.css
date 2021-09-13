@@ -1,7 +1,7 @@
 .card-header-container {
   display: flex;
   justify-content: space-between;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
 .card-header-title {
@@ -23,7 +23,7 @@
   width: 100%;
   color: white;
   outline: none;
-  transition: all 0.4s cubic-bezier(0.05, 0, 0, 1);
+  transition: 0.5s;
 }
 
 .card-header-container input[type='text']:focus,
@@ -32,11 +32,11 @@
 }
 
 .card-header-container input[type='checkbox'] {
-  zoom: 1.7;
+  width: 1.2rem;
+  height: 1.2rem;
   margin: 0;
-  margin-left: 0.1rem;
   opacity: 70%;
-  transition: all 0.4s cubic-bezier(0.05, 0, 0, 1);
+  transition: 0.5s;
 }
 
 .card-header-container input[type='checkbox']:checked,
@@ -46,19 +46,23 @@
 
 .card-header-edit-buttons {
   display: flex;
-  gap: 0.25rem;
+  gap: 0.3rem;
   margin-top: 0.4rem;
   align-self: start;
+  align-items: center;
 }
 
 .card-header-container svg {
-  zoom: 1.2;
-  color: rgba(255, 255, 255, 0.7);
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 3px;
+  color: white;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.05, 0, 0, 1);
-  align-self: center;
+  transition: 0.5s;
+  opacity: 70%;
 }
 
 .card-header-container svg:hover {
-  color: white;
+  background-color: #ffffff31;
+  opacity: 100%;
 }
