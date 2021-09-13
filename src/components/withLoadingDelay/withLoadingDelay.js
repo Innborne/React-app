@@ -12,16 +12,28 @@ function WithLoadingDelay(Component, componentStyle, pageStyle) {
       return () => clearTimeout(timer);
     }, []);
 
-    const DelayLoading = () => {
+    const componentWithDelay = () => {
       return (
-        <div className={pageStyle}>
-          <div
-            className={componentStyle}
-            style={{ boxShadow: 'none', backgroundColor: 'transparent' }}
-          >
+        <div
+          className={componentStyle}
+          style={{
+            boxShadow: 'none',
+            backgroundColor: 'transparent',
+            justifyContent: 'center',
+          }}
+        >
+          <div>
             <div className="loading" />
           </div>
         </div>
+      );
+    };
+
+    const DelayLoading = () => {
+      return pageStyle ? (
+        <div className={pageStyle}>{componentWithDelay()}</div>
+      ) : (
+        componentWithDelay()
       );
     };
 
