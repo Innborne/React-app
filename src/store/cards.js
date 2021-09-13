@@ -24,6 +24,7 @@ const cardListSlice = createSlice({
     },
     setReadOnlyMode: (state, action) => {
       state.readOnly = action.payload;
+      state.items = state.items.map((card) => ({ ...card, check: false }));
     },
   },
 });

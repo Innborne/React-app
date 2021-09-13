@@ -4,7 +4,7 @@ import cardListReducer from './cards';
 import userReducer from './user';
 
 const logger = () => (next) => (action) => {
-  console.log('dispatching', action);
+  console.debug('dispatching', action);
   return next(action);
 };
 
