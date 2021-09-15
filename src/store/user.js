@@ -45,6 +45,7 @@ export const logout = () => {
   return (dispatch) => {
     dispatch(userActions.setUser(null));
     localStorage.removeItem('user');
+    localStorage.removeItem('settings');
   };
 };
 
