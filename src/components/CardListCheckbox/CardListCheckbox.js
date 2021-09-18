@@ -6,7 +6,7 @@ const CheckboxContainer = styled.div`
   align-items: center;
   color: white;
   opacity: ${({ checked }) => (checked ? '100%' : '50%')};
-  transition: all 0.4s cubic-bezier(0.05, 0, 0, 1);
+  transition: 0.5s;
 `;
 
 const CheckboxInput = styled.input`

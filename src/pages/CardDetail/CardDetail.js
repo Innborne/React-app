@@ -70,7 +70,9 @@ const CardDetail = () => {
           />
           <div className="card-idit-button-container">
             <button onClick={saveCardHandler}>{changeCardButtonText}</button>
-            <button onClick={cancelCardHandler}>{cancelButtonText}</button>
+            <button className="cancel" onClick={cancelCardHandler}>
+              {cancelButtonText}
+            </button>
           </div>
         </div>
       )}

@@ -10,7 +10,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: all 0.4s cubic-bezier(0.05, 0, 0, 1);
+  transition: 0.5s;
   gap: 0.5rem;
 }
 
@@ -29,7 +29,7 @@
   background-color: transparent;
   font-weight: bold;
   outline: none;
-  transition: all 0.4s cubic-bezier(0.05, 0, 0, 1);
+  transition: 0.5s;
   font-size: x-large;
   font-family: inherit;
 }
@@ -50,7 +50,7 @@
   resize: none;
   width: 100%;
   height: 100%;
-  transition: all 0.4s cubic-bezier(0.05, 0, 0, 1);
+  transition: 0.5s;
 }
 
 .card-adding-item textarea:focus,
@@ -64,31 +64,33 @@
   gap: 0.5rem;
 }
 
-.card-adding-button {
+.card-adding-button-conteiner button {
   background-color: #2a2a2a;
   color: white;
   border-radius: 5px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
-  padding: 0.5rem;
-  transition: all 0.4s cubic-bezier(0.05, 0, 0, 1);
+  border: 0;
+  padding: 0.5rem 0.85rem;
+  transition: 0.5s;
   cursor: pointer;
 }
 
-.card-adding-button:hover {
-  background-color: #777777;
+.card-adding-button-conteiner button:hover {
+  background-color: #3a3a3a;
+}
+
+.card-adding-button-conteiner .cancel {
+  background-color: #2a2a2a00;
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 @media (max-width: 54rem) {
   .card-adding-item {
     max-width: calc(100% / 2 - 0.5rem);
-    width: 100%;
   }
 }
 
 @media (max-width: 36.33rem) {
   .card-adding-item {
-    max-width: 95%;
-    width: 95%;
+    min-width: 100%;
   }
 }

@@ -10,12 +10,12 @@
   border: 2px solid transparent;
   display: flex;
   flex-direction: column;
-  transition: all 0.4s cubic-bezier(0.05, 0, 0, 1);
+  transition: 0.5s;
   gap: 0.5rem;
 }
 
 .readMode:hover {
-  background-color: #777777;
+  background-color: #616161;
 }
 
 .checked {
@@ -31,6 +31,6 @@
 
 @media (max-width: 36.33rem) {
   .card-item {
-    max-width: 100%;
+    min-width: 100%;
   }
 }

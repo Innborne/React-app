@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import './withLoadingDelay.css';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 function WithLoadingDelay(Component, componentStyle, pageStyle) {
   return function ComponentWithLoading(props) {
@@ -22,9 +22,7 @@ function WithLoadingDelay(Component, componentStyle, pageStyle) {
             justifyContent: 'center',
           }}
         >
-          <div>
-            <div className="loading" />
-          </div>
+          <LoadingSpinner />
         </div>
       );
     };

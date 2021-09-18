@@ -1,6 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initCardList = { items: [], readOnly: true };
+const initCardList = {
+  items: [],
+  readOnly: localStorage.getItem('settings')
+    ? localStorage.getItem('settings') === 'true'
+    : true,
+};
 
 const cardListSlice = createSlice({
   name: 'cards',
@@ -24,9 +29,17 @@ const cardListSlice = createSlice({
     },
     setReadOnlyMode: (state, action) => {
       state.readOnly = action.payload;
+      state.items = state.items.map((card) => ({ ...card, check: false }));
     },
   },
 });
+
+export const changeReadOnlyMode = (readOnlyValue) => {
+  return (dispatch) => {
+    localStorage.setItem('settings', JSON.stringify(readOnlyValue));
+    dispatch(cardListActions.setReadOnlyMode(readOnlyValue));
+  };
+};
 
 export const cardListActions = cardListSlice.actions;
 export default cardListSlice.reducer;

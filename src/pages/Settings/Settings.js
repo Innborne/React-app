@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { cardListActions } from '../../store/cards';
+import { changeReadOnlyMode } from '../../store/cards';
 import CardListCheckbox from '../../components/CardListCheckbox/CardListCheckbox';
 import './Settings.css';
 
@@ -9,7 +9,7 @@ function Settings() {
   const readOnlyModeText = 'Read-only mode',
     settingTitle = 'Settings';
   const readOnlyHandleClick = () => {
-    dispatch(cardListActions.setReadOnlyMode(!readOnlyMode));
+    dispatch(changeReadOnlyMode(!readOnlyMode));
   };
 
   return (
